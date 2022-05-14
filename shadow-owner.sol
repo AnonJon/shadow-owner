@@ -9,6 +9,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract ShadowOwner is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Burnable, Ownable {
     mapping(address => address) public shaddowlist;
+    bool transfer = false;
 
     constructor() ERC721("ShadowOwner", "SHDW") {}
 
@@ -27,10 +28,19 @@ contract ShadowOwner is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Burnab
 
     // The following functions are overrides required by Solidity.
 
+    function _transfer(address from, address to, uint256 tokenId) internal override {
+        require(
+            transfer,
+            "non transferable"
+        );
+        super._transfer(from, to, tokenId);
+}
+
     function _beforeTokenTransfer(address from, address to, uint256 tokenId)
         internal
         override(ERC721, ERC721Enumerable)
     {
+        
         super._beforeTokenTransfer(from, to, tokenId);
     }
 
