@@ -8,14 +8,21 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract ShadowOwner is ERC721, ERC721Enumerable, ERC721URIStorage, ERC721Burnable, Ownable {
+    mapping(address => address) public shaddowlist;
+
     constructor() ERC721("ShadowOwner", "SHDW") {}
 
-    function safeMint(address to, uint256 tokenId, string memory uri)
+
+    function safeMint(uint256 tokenId, string memory uri, address shadow)
         public
-        onlyOwner
     {
-        _safeMint(to, tokenId);
+        require(
+            shaddowlist[tx.origin] != shadow,
+            "You have already created a shadow for this address"
+        );
+        _safeMint(shadow, tokenId);
         _setTokenURI(tokenId, uri);
+        shaddowlist[tx.origin] = shadow;
     }
 
     // The following functions are overrides required by Solidity.
