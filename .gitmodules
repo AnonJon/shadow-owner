@@ -1,0 +1,3 @@
+[submodule "shadow-owner/lib/forge-std"]
+	path = shadow-owner/lib/forge-std
+	url = https://github.com/foundry-rs/forge-std
