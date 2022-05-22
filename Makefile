@@ -29,5 +29,10 @@ setup-yarn:
 local-node: setup-yarn 
 	anvil -a 10 
 
+# update contract you want to deploy
+deploy-local:
+	forge create MyNFT --private-key ${PRIVATE_KEY_LOCAL} # --rpc-url
+
+# update contract you want to deploy
 deploy:
-	forge create MyNFT --private-key ${PRIVATE_KEY} # --rpc-url 
+	forge create MyNFT --private-key ${PRIVATE_KEY} # --rpc-url ${RPC_URL} #
