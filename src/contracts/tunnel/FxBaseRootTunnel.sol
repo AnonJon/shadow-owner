@@ -1,10 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-import {RLPReader} from "../lib/RLPReader.sol";
-import {MerklePatriciaProof} from "../lib/MerklePatriciaProof.sol";
-import {Merkle} from "../lib/Merkle.sol";
-import "../lib/ExitPayloadReader.sol";
+import {RLPReader} from "../utils/RLPReader.sol";
+import {MerklePatriciaProof} from "../utils/MerklePatriciaProof.sol";
+import {Merkle} from "../utils/Merkle.sol";
+import "../utils/ExitPayloadReader.sol";
 
 interface IFxStateSender {
     function sendMessageToChild(address _receiver, bytes calldata _data) external;
